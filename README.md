@@ -61,7 +61,6 @@ NeedForJava/
 ├── PlayerPosition.java # 2D position (lane, cell)
 ├── Message.java        # Narrative text and dynamic NPC dialogue
 ├── UserInput.java      # Validated console input utilities
-├── Random.java         # Random number utility
 ├── vehicles.txt        # Vehicle configuration data
 ├── classDiagram.txt    # Mermaid class diagram
 └── docs/               # Generated JavaDoc HTML documentation
