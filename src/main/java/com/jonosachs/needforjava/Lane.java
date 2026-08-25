@@ -1,33 +1,33 @@
+package com.jonosachs.needforjava;
+
 import java.util.Random;
 
 /**
  * Class to create the lanes and obstacles of the highway
  */
 public class Lane {
-    private static final Random RANDOM = new Random();
+    private Random random;
     private int laneLength;
     private int maxObstacles;
     private String[] laneArray;
 
     /**
-     * Default constructor creating an object of the Lane class
-     */
-    public Lane() {
-        laneLength = -1;
-        maxObstacles = -1;
-        laneArray = new String[1];
-    }
-
-    /**
-     * Non-default constructor to assign specific values to the Class objects
+     * Creates a single lane with random obstacles
      *
-     * @param laneLength   Accepts the lane length as an integer
-     * @param maxObstacles Accepts the maximum number of obstalces as an integer
+     * @param laneLength   number of cells in the lane
+     * @param maxObstacles upper bound for number of obstacles
+     * @param random       injected random source for obstacle placement
      */
-    public Lane(int laneLength, int maxObstacles) {
+    public Lane(int laneLength, int maxObstacles, Random random) {
+        this.random = random;
         this.laneLength = laneLength;
         this.maxObstacles = maxObstacles;
         this.laneArray = new String[laneLength];
+    }
+
+    /** Default lane configuration before being set */
+    public Lane(Random random) {
+        this(-1, -1, random);
     }
 
     /**
@@ -114,7 +114,7 @@ public class Lane {
      * @return Returns the random obstacle as a String
      */
     public String randomObstacle() {
-        int randomNum = RANDOM.nextInt(1, 10);
+        int randomNum = random.nextInt(1, 10);
         String obstacle = "";
 
         switch (randomNum) {
@@ -183,7 +183,7 @@ public class Lane {
      * @return Returns obstalce or otherwise as a String
      */
     public String tryObstacle() {
-        int randomNum = RANDOM.nextInt(1, 3);
+        int randomNum = random.nextInt(1, 3);
         String event = "";
 
         switch (randomNum) {

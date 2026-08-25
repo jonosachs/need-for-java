@@ -1,28 +1,31 @@
+package com.jonosachs.needforjava;
+
 import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.Random;
 
 /**
- * Main class which intialises the game conditions and runs the gameplay
+ * Main game class which intialises the game conditions and runs the gameplay
  *
  * @author Jonathan Sachs
  * @version 1.0
  */
 public class Game {
-    private static final Random RANDOM = new Random();
+    private final static Random RANDOM = new Random();
     private Player player;
     private Highway highway;
     private double fuelHandicap;
     private Message message;
 
     /**
-     * Default constructor creating an object of the Game class
+     * Creates the main game objects required for play
      */
     public Game() {
+
         player = new Player();
-        highway = new Highway();
+        highway = new Highway(RANDOM);
+        message = new Message(RANDOM);
         fuelHandicap = 0;
-        message = new Message();
     }
 
     /**
@@ -214,7 +217,7 @@ public class Game {
     public static void main(String[] args)
 
     {
-        Message message = new Message();
+        Message message = new Message(RANDOM);
         Game game = new Game();
 
         System.out.println(message.credits());

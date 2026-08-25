@@ -1,16 +1,20 @@
+package com.jonosachs.needforjava;
+
 import java.util.Random;
 
 /**
  * Class storing in-game messages to be displayed to the user
  */
 public class Message {
-    private final static Random RANDOM = new Random();
+    private final Random random;
 
     /**
-     * Default constructor for Class
+     * Construct game messages
+     * 
+     * @param random source for choosing random msg
      */
-    public Message() {
-
+    public Message(Random random) {
+        this.random = random;
     }
 
     /**
@@ -107,7 +111,7 @@ public class Message {
      * @return Returns the randomly chosen message as a String
      */
     public String randomMsg(String... messages) {
-        return messages[RANDOM.nextInt(messages.length)];
+        return messages[this.random.nextInt(messages.length)];
     }
 
     /**

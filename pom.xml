@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <!-- POM format version. Always 4.0.0 — unrelated to your project's version. -->
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- Coordinates: the unique address of this artifact. -->
+  <groupId>com.jonosachs</groupId>
+  <artifactId>need-for-java</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>Need for Java</name>
+  <description>Text-based highway escape game.</description>
+
+  <properties>
+    <!-- 'release' (not source/target) guarantees you don't accidentally call
+         APIs newer than 17 while claiming to target 17. -->
+    <maven.compiler.release>17</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.10.2</version>
+      <!-- 'test' scope: on the classpath when compiling and running tests,
+           excluded from the packaged jar. -->
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <!-- Surefire runs unit tests. Pinning the version keeps builds
+           reproducible across Maven installations. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.2.5</version>
+      </plugin>
+
+      <!-- Generates JavaDoc into target/site/apidocs via `mvn javadoc:javadoc`. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.6.3</version>
+        <configuration>
+          <doclint>all</doclint>
+          <!-- Write generated docs into the repo rather than target/, so they're
+          committable and servable via GitHub Pages. -->
+          <reportOutputDirectory>${project.basedir}/docs</reportOutputDirectory>
+          <destDir>.</destDir>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
