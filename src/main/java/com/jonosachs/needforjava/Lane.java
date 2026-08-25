@@ -25,9 +25,17 @@ public class Lane {
         this.laneArray = new String[laneLength];
     }
 
-    /** Default lane configuration before being set */
+    /**
+     * Default lane configuration with placeholder values
+     *
+     * @param random injected random source for obstacle placement
+     *
+     */
     public Lane(Random random) {
-        this(-1, -1, random);
+        this.random = random;
+        this.laneLength = -1;
+        this.maxObstacles = -1;
+        this.laneArray = new String[1];
     }
 
     /**
